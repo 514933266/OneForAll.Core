@@ -78,5 +78,47 @@ namespace OneForAll.Core.Utility
 
         #endregion
 
+        #region 获取日期
+
+        /// <summary>
+        /// 转换日期为起始时间（当月第一天）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToFirstDate(DateTime? date)
+        {
+            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) : new DateTime(date.Value.Year, date.Value.Month, 1);
+        }
+
+        /// <summary>
+        /// 转换日期为起始时间（当月第一天）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToFirstDate(DateTime date)
+        {
+            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) : new DateTime(date.Year, date.Month, 1);
+        }
+
+        /// <summary>
+        /// 转换日期为结束时间（当月最后一天）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToLastDate(DateTime? date)
+        {
+            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) : new DateTime(date.Value.Year, date.Value.Month, DateTime.DaysInMonth(date.Value.Year, date.Value.Month));
+        }
+
+        /// <summary>
+        /// 转换日期为结束时间（当月最后一天）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToLastDate(DateTime date)
+        {
+            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) : new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+        }
+        #endregion
     }
 }
