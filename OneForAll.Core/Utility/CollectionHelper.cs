@@ -128,9 +128,15 @@ namespace OneForAll.Core.Utility
             IEnumerable<T> list) where T : IEntity<TKey>, IParent<TKey>, IChildren<T>, new()
         {
             var key = default(TKey);
-            var tops = list.Where(w => w.ParentId.Equals(key))
-                .ToList();
+            var tops = new List<T>();
 
+            list.ForEach(e =>
+            {
+                if (e.ParentId.Equals(key) || !list.Any(w => w.Id.Equals(e.ParentId)))
+                {
+                    tops.Add(e);
+                }
+            });
             tops.ForEach(e =>
             {
                 ConverToTree<T, TKey>(list, e);
