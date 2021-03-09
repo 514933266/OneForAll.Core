@@ -48,11 +48,10 @@ namespace OneForAll.Core.Utility
         {
             string time = string.Empty;
             DayOfWeek weekDay = datetime.DayOfWeek;
-            var date = datetime.ToLongDateString();
-                switch (weekDay)
+            switch (weekDay)
             {
                 case DayOfWeek.Sunday:
-                    time = string.Format("{0} 星期{1}", datetime,"日");
+                    time = string.Format("{0} 星期{1}", datetime, "日");
                     break;
                 case DayOfWeek.Monday:
                     time = string.Format("{0} 星期{1}", datetime, "一");
@@ -97,7 +96,7 @@ namespace OneForAll.Core.Utility
         /// <returns>起始时间</returns>
         public static DateTime ConvertToFirstDate(DateTime date)
         {
-            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) : new DateTime(date.Year, date.Month, 1);
+            return new DateTime(date.Year, date.Month, 1);
         }
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace OneForAll.Core.Utility
         /// <returns>起始时间</returns>
         public static DateTime ConvertToLastDate(DateTime date)
         {
-            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) : new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+            return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
         #endregion
     }

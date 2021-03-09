@@ -68,7 +68,7 @@ namespace OneForAll.Core.Utility
         /// <typeparam name="T2">要获取的特性类型</typeparam>
         /// <param name="t">对象</param>
         /// <returns>结果字典</returns>
-        public static Dictionary<string, List<T2>> GetPublicAttributes<T, T2>(T t = default(T))
+        public static Dictionary<string, List<T2>> GetPublicAttributes<T, T2>(T t = default)
             where T2 : Attribute
             where T : class
         {
@@ -98,7 +98,6 @@ namespace OneForAll.Core.Utility
         public static Dictionary<string, string> ToDictionary<T>(T t) where T : new()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            string value = string.Empty;
             System.Type type = t.GetType();
             PropertyInfo[] pros = type.GetProperties();
             foreach (PropertyInfo f in pros)
@@ -111,6 +110,7 @@ namespace OneForAll.Core.Utility
         #endregion
 
         #region 对象/方法
+
         /// <summary>
         /// 创建对象实例
         /// </summary>
@@ -129,7 +129,7 @@ namespace OneForAll.Core.Utility
             }
             catch
             {
-                return default(T);
+                return default;
             }
         }
         /// <summary>
@@ -151,6 +151,7 @@ namespace OneForAll.Core.Utility
                 return default(T);
             }
         }
+
         /// <summary>
         /// 创建对象实例（构造函数有参数）
         /// </summary>
@@ -182,6 +183,7 @@ namespace OneForAll.Core.Utility
                 return default(T);
             }
         }
+
         /// <summary>
         /// 调用指定dll对象实例中的有参无返回值方法
         /// </summary>
@@ -193,19 +195,11 @@ namespace OneForAll.Core.Utility
         /// <param name="paras">调用方法的参数实例</param>
         public static void UsingInstanceMethod(string assemblyName, string nameSpace, string className, string methodName, System.Type[] mType, object[] paras)
         {
-
-            try
-            {
-                string fullName = nameSpace + "." + className;
-                System.Type type = Assembly.Load(assemblyName).GetType(fullName);
-                MethodInfo method = type.GetMethod(methodName, mType);
-                object obj = Activator.CreateInstance(type);
-                method.Invoke(obj, paras);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            string fullName = nameSpace + "." + className;
+            System.Type type = Assembly.Load(assemblyName).GetType(fullName);
+            MethodInfo method = type.GetMethod(methodName, mType);
+            object obj = Activator.CreateInstance(type);
+            method.Invoke(obj, paras);
         }
 
         /// <summary>
@@ -260,7 +254,6 @@ namespace OneForAll.Core.Utility
         /// <param name="t">对象</param>
         public static void ToObject<T>(Dictionary<string, string> dic, T t) where T :class, new()
         {
-            var value = string.Empty;
             var pros = t.GetType().GetProperties();
             foreach (PropertyInfo f in pros)
             {
@@ -427,8 +420,8 @@ namespace OneForAll.Core.Utility
         /// <returns>属性</returns>
         public static PropertyInfo GetProperty<T>(string propertyname,T t = default(T))
         {
-            System.Type type = null;
-            PropertyInfo property = null;
+            System.Type type;
+            PropertyInfo property;
             if (t != null)
             {
                 type = t.GetType();
@@ -440,6 +433,7 @@ namespace OneForAll.Core.Utility
             property = type.GetProperty(propertyname);
             return property;
         }
+
         /// <summary>
         /// 获取某个对象下的所有指定类型属性
         /// </summary>

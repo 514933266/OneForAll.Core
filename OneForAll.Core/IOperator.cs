@@ -5,14 +5,13 @@ using System.Text;
 namespace OneForAll.Core
 {
     /// <summary>
-    /// 约束：子级
+    /// 接口：操作人
     /// </summary>
-    /// <typeparam name="TType">主键类型</typeparam>
-    public interface IChildren<TType>
+    public interface IOperator<TType> : IEntity<TType>
     {
         /// <summary>
-        /// 子级
+        /// 名称
         /// </summary>
-        IEnumerable<TType> Children { get; set; }
+        public string Name { get; set; }
     }
 }

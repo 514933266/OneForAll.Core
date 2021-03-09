@@ -7,7 +7,7 @@ namespace OneForAll.Core
     /// <summary>
     /// 接口：树
     /// </summary>
-    public interface ITree<TKey> : IEntity<TKey>, IParent<TKey>, IChildren<ITree<TKey>>
+    public interface ITreeNode<TKey, T> : IEntity<TKey>, IParent<TKey>, IChildren<T>
     {
     }
 }

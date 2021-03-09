@@ -101,7 +101,6 @@ namespace OneForAll.Core.ORM
         {
             var obj = Activator.CreateInstance(expression.Type);
             PropertyInfo[] pros = ReflectionHelper.GetPropertys(obj);
-            object[] paras = new object[expression.Bindings.Count];
             for (int i = 0; i < expression.Bindings.Count; i++)
             {
                 var bind = expression.Bindings[i] as MemberAssignment;
@@ -150,7 +149,7 @@ namespace OneForAll.Core.ORM
         }
         private Expression VisitAdd(BinaryExpression expression)
         {
-            object result = null;
+            object result;
             var left = Visit(expression.Left) as ConstantExpression;
             var right = Visit(expression.Right) as ConstantExpression;
             try
@@ -168,7 +167,7 @@ namespace OneForAll.Core.ORM
         }
         private Expression VisitSubtract(BinaryExpression expression)
         {
-            object result = null;
+            object result;
             var left = Visit(expression.Left) as ConstantExpression;
             var right = Visit(expression.Right) as ConstantExpression;
             try

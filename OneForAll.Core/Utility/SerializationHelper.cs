@@ -14,6 +14,7 @@ namespace OneForAll.Core.Utility
    public static class SerializationHelper
     {
         #region Binary 序列化
+
         /// <summary>
         /// Binary 序列化对象
         /// </summary>
@@ -129,13 +130,15 @@ namespace OneForAll.Core.Utility
         /// </summary>
         public static void SerializeXmlToFile(object obj, string path, Encoding encoding)
         {
-            if (string.IsNullOrEmpty(path))
-                throw new ArgumentNullException("path");
-            using (var file = new FileStream(path, FileMode.Create, FileAccess.Write))
+            if (!string.IsNullOrEmpty(path))
             {
-                SerializeXmlInternal(file, obj, encoding);
+                using (var file = new FileStream(path, FileMode.Create, FileAccess.Write))
+                {
+                    SerializeXmlInternal(file, obj, encoding);
+                }
             }
         }
+
         /// <summary>
         /// 从XML字符串中反序列化对象
         /// </summary>
@@ -168,12 +171,10 @@ namespace OneForAll.Core.Utility
         public static T DeserializeXmlFromFile<T>(string path, Encoding encoding) where T : new()
         {
             var xml = string.Empty;
-            if (string.IsNullOrEmpty(path))
-                throw new ArgumentNullException("path");
-            if (encoding == null)
-                throw new ArgumentNullException("encoding");
             if (File.Exists(path))
+            {
                 xml = File.ReadAllText(path, encoding);
+            }
             return DeserializeXml<T>(xml, encoding);
         }
 
