@@ -83,6 +83,10 @@ StringHelper.MatchMiddleValue(string value, string begin, string end)
 TimeHelper.ToTimeStamp()
 TimeHelper.ToTimeStamp(DateTime datetime)
 TimeHelper.ToDateTime(long unix)
+
+// 日期
+TimeHelper.ToFirstDate(DateTime? date)
+TimeHelper.ToLastDate(DateTime? date)
 ```
 ### 6. 通用对象
 #### BaseErrType为常用的系统错误类型，示例
@@ -100,4 +104,13 @@ new BaseMessage().Fail(BaseErrType type, string msg = "fail")
 #### PageList为分页对象
 ```C#
 new PageList(int total, int pageIndex, int pageSize, IEnumerable<T> items)
+```
+
+#### 7. 数组扩展
+#### CollectioHelper为常用数组操作方法，可引用CollectionExtension使用扩展方法，示例
+```C#
+var tree = list.ToTree<Tree, int>();
+var item = list.FindNode(nodeId);
+var parent =list.FindParent(nodeId, parentId);
+var children = list.FindChildren<Tree, int>(parent, true);
 ```
