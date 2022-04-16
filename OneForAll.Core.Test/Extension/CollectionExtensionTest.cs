@@ -40,7 +40,6 @@ namespace OneForAll.Core.Test
         [TestMethod()]
         public void ConverToTreeTest()
         {
-            var guid = default(Guid);
             var tree = list.ToTree<Tree, int>();
         }
 

@@ -1,6 +1,7 @@
 ﻿using OneForAll.Core.Extension;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Globalization;
 using System.Reflection;
@@ -168,14 +169,14 @@ namespace OneForAll.Core.Utility
             string assemblyName,
             string fullName,
             object[] args,
-            bool ignoreCase=false, 
-            BindingFlags bindingAttr=BindingFlags.CreateInstance, 
-            Binder binder=null, 
-            CultureInfo culture=null)
+            bool ignoreCase = false,
+            BindingFlags bindingAttr = BindingFlags.CreateInstance,
+            Binder binder = null,
+            CultureInfo culture = null)
         {
             try
             {
-                object ect = Assembly.Load(assemblyName).CreateInstance(fullName, ignoreCase, bindingAttr, binder, args,culture,null);
+                object ect = Assembly.Load(assemblyName).CreateInstance(fullName, ignoreCase, bindingAttr, binder, args, culture, null);
                 return (T)ect;
             }
             catch
@@ -252,7 +253,7 @@ namespace OneForAll.Core.Utility
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="dic">属性字典</param>
         /// <param name="t">对象</param>
-        public static void ToObject<T>(Dictionary<string, string> dic, T t) where T :class, new()
+        public static void ToObject<T>(Dictionary<string, string> dic, T t) where T : class, new()
         {
             var pros = t.GetType().GetProperties();
             foreach (PropertyInfo f in pros)
@@ -329,7 +330,7 @@ namespace OneForAll.Core.Utility
                                 p.SetValue(obj, Convert.ChangeType(dt.Rows[i][j], p.PropertyType));
                             }
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             // 返回结果
                             var result = new ValidateTableResult()
@@ -385,7 +386,7 @@ namespace OneForAll.Core.Utility
         {
             var dt = new DataTable();
             var props = GetPropertys(t);
-            foreach(var p in props)
+            foreach (var p in props)
             {
                 dt.Columns.Add(p.Name);
             }
@@ -402,7 +403,7 @@ namespace OneForAll.Core.Utility
             var index = 0;
             var props = GetPropertys(t);
             var arr = new object[props.Length];
-            foreach(var p in props)
+            foreach (var p in props)
             {
                 arr[index] = p.GetValue(t) ?? "";
                 index++;
@@ -410,7 +411,7 @@ namespace OneForAll.Core.Utility
             return arr;
         }
 
-        
+
         /// <summary>
         /// 获取对象某个公共属性
         /// </summary>
@@ -418,7 +419,7 @@ namespace OneForAll.Core.Utility
         /// <param name="propertyname">属性名</param>
         /// <param name="t">实体</param>
         /// <returns>属性</returns>
-        public static PropertyInfo GetProperty<T>(string propertyname,T t = default(T))
+        public static PropertyInfo GetProperty<T>(string propertyname, T t = default(T))
         {
             System.Type type;
             PropertyInfo property;
@@ -441,11 +442,11 @@ namespace OneForAll.Core.Utility
         /// <param name="t">实体</param>
         /// <param name="flags">指定控制绑定以及通过反射执行成员和类型搜索的方式的标记。</param>
         /// <returns>属性集合</returns>
-        public static PropertyInfo[] GetPropertys<T>(T t = default(T), BindingFlags flags= BindingFlags.Instance | BindingFlags.Public)
+        public static PropertyInfo[] GetPropertys<T>(T t = default(T), BindingFlags flags = BindingFlags.Instance | BindingFlags.Public)
         {
             System.Type type = null;
             PropertyInfo[] propertys = null;
-            if (t!=null)
+            if (t != null)
             {
                 type = t.GetType();
             }
@@ -458,5 +459,34 @@ namespace OneForAll.Core.Utility
         }
         #endregion
 
+        #region 获取特性
+
+        /// <summary>
+        /// 获取特性
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static string GetDisplayName(Enum enumValue)
+        {
+            FieldInfo fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
+            DisplayAttribute[] attrs = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
+
+            return attrs.Length > 0 ? attrs[0].Name : enumValue.ToString();
+        }
+
+        /// <summary>
+        /// 获取特性
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static string GetDisplayDescription(Enum enumValue)
+        {
+            FieldInfo fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
+            DisplayAttribute[] attrs = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
+
+            return attrs.Length > 0 ? attrs[0].Description : enumValue.ToString();
+        }
+
+        #endregion
     }
 }

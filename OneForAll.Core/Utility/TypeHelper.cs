@@ -96,6 +96,7 @@ namespace OneForAll.Core.Utility
         {
             return type != null && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
+
         /// <summary>
         /// 判断是否为可空类型
         /// </summary>
@@ -129,7 +130,7 @@ namespace OneForAll.Core.Utility
         }
 
         /// <summary>
-        ///获取空值常量表达式
+        /// 获取空值常量表达式
         /// </summary>
         public static ConstantExpression GetNullConstant(Type type)
         {

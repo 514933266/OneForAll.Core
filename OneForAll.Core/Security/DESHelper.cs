@@ -11,9 +11,8 @@ namespace OneForAll.Core.Security
     /// </summary>
     public static class DESHelper
     {
-
-        //默认密钥向量
-        private static readonly byte[] _keys = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+        //默认密钥向量 
+        private static byte[] Keys = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F };
 
         /// <summary>
         /// DES加密字符串
@@ -23,17 +22,15 @@ namespace OneForAll.Core.Security
         /// <returns>加密后的字符串</returns>
         public static string Encrypt(string input, string encryptKey)
         {
-            var rgbKey = Encoding.UTF8.GetBytes(encryptKey.Substring(0, 8));
-            var rgbIV = _keys;
-            var inputByteArray = Encoding.UTF8.GetBytes(input);
-            var dCSP = new DESCryptoServiceProvider();
-            using (var ms = new MemoryStream())
-            {
-                var cStream = new CryptoStream(ms, dCSP.CreateEncryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
-                cStream.Write(inputByteArray, 0, inputByteArray.Length);
-                cStream.FlushFinalBlock();
-                return Convert.ToBase64String(ms.ToArray());
-            }
+            byte[] rgbKey = Encoding.UTF8.GetBytes(encryptKey.Substring(0, 16));
+            byte[] rgbIV = Keys;
+            byte[] inputByteArray = Encoding.UTF8.GetBytes(input);
+            var DCSP = Aes.Create();
+            MemoryStream mStream = new MemoryStream();
+            CryptoStream cStream = new CryptoStream(mStream, DCSP.CreateEncryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
+            cStream.Write(inputByteArray, 0, inputByteArray.Length);
+            cStream.FlushFinalBlock();
+            return Convert.ToBase64String(mStream.ToArray());
         }
 
         /// <summary>
@@ -44,15 +41,16 @@ namespace OneForAll.Core.Security
         /// <returns>原字符串</returns>
         public static string Decrypt(string input, string decryptKey)
         {
-            var rgbKey = Encoding.UTF8.GetBytes(decryptKey);
-            var rgbIV = _keys;
-            var inputByteArray = Convert.FromBase64String(input);
-            var DCSP = new DESCryptoServiceProvider();
-            var ms = new MemoryStream();
-            var cStream = new CryptoStream(ms, DCSP.CreateDecryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
+            byte[] rgbKey = Encoding.UTF8.GetBytes(decryptKey.Substring(0, 16));
+            byte[] rgbIV = Keys;
+            byte[] inputByteArray = Convert.FromBase64String(input);
+            var DCSP = Aes.Create();
+            MemoryStream mStream = new MemoryStream();
+            CryptoStream cStream = new CryptoStream(mStream, DCSP.CreateDecryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
+            Byte[] inputByteArrays = new byte[inputByteArray.Length];
             cStream.Write(inputByteArray, 0, inputByteArray.Length);
             cStream.FlushFinalBlock();
-            return Encoding.UTF8.GetString(ms.ToArray());
+            return Encoding.UTF8.GetString(mStream.ToArray());
         }
     }
 }
