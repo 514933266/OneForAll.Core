@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Description>OneForAll核心类库：主要为通用接口、对象、帮助类（编码、字符串处理、常用正则、扩展方法、加密解密）</Description>
     <Authors>xhp</Authors>
     <Copyright>xhp</Copyright>
@@ -11,7 +11,7 @@
     <FileVersion>1.1.0.0</FileVersion>
     <RepositoryUrl>https://github.com/514933266/OneForAll.Core.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.1.1.0</Version>
+    <Version>1.2.0.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
