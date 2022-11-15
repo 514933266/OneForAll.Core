@@ -1,6 +1,7 @@
 ﻿using OneForAll.Core;
 using System;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace OneForAll.Core.ORM
 {
@@ -23,10 +24,24 @@ namespace OneForAll.Core.ORM
         void Register<T>(Func<int> action, T conn);
 
         /// <summary>
+        /// 注册方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action">方法</param>
+        /// <param name="conn">连接上下文</param>
+        void RegisterAsync<T>(Task<int> action, T conn);
+
+        /// <summary>
         /// 提交事务
         /// </summary>
         /// <returns>受影响行数</returns>
         int Commit();
+
+        /// <summary>
+        /// 提交事务
+        /// </summary>
+        /// <returns>受影响行数</returns>
+        Task<int> CommitAsync();
 
         /// <summary>
         /// 回滚

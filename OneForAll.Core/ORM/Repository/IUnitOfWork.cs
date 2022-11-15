@@ -27,6 +27,12 @@ namespace OneForAll.Core.ORM
         int Commit();
 
         /// <summary>
+        /// 提交所有事务并返回影响行数
+        /// </summary>
+        /// <returns></returns>
+        int CommitAsync();
+
+        /// <summary>
         /// 回滚所有事务
         /// </summary>
         void RollBack();
