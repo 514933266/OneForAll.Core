@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OneForAll.Core.ORM
 {
@@ -30,7 +31,7 @@ namespace OneForAll.Core.ORM
         /// 提交所有事务并返回影响行数
         /// </summary>
         /// <returns></returns>
-        int CommitAsync();
+        Task<int> CommitAsync();
 
         /// <summary>
         /// 回滚所有事务
