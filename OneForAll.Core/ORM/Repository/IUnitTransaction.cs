@@ -29,7 +29,7 @@ namespace OneForAll.Core.ORM
         /// <typeparam name="T"></typeparam>
         /// <param name="action">方法</param>
         /// <param name="conn">连接上下文</param>
-        void RegisterAsync<T>(Task<int> action, T conn);
+        Task RegisterAsync<T>(Func<Task<int>> action, T conn);
 
         /// <summary>
         /// 提交事务
