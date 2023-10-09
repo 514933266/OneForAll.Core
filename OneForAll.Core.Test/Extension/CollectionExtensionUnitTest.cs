@@ -9,7 +9,7 @@ using System.Text;
 namespace OneForAll.Core.Test
 {
     [TestClass()]
-    public class CollectionExtensionTest
+    public class CollectionExtensionUnitTest
     {
         List<Tree> list = new List<Tree>()
         {

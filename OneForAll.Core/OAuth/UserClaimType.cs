@@ -24,7 +24,7 @@ namespace OneForAll.Core.OAuth
         /// <summary>
         /// 名称
         /// </summary>
-        public const string USER_NICKNAME = "UserNickname";
+        public const string USER_NICKNAME = "UserNickName";
 
         /// <summary>
         /// id
@@ -35,5 +35,30 @@ namespace OneForAll.Core.OAuth
         /// 角色
         /// </summary>
         public const string ROLE = "Role";
+
+        /// <summary>
+        /// 人员档案id
+        /// </summary>
+        public const string PERSON_ID = "PersonId";
+
+        /// <summary>
+        /// 是否默认用户
+        /// </summary>
+        public const string IS_DEFAULT = "IsDefault";
+
+        /// <summary>
+        /// 微信Appid
+        /// </summary>
+        public const string WX_APPID = "WxAppId";
+
+        /// <summary>
+        /// 微信Openid
+        /// </summary>
+        public const string WX_OPENID = "WxOpenId";
+
+        /// <summary>
+        /// 微信unionId
+        /// </summary>
+        public const string WX_UNIONID = "WxUnionId";
     }
 }
