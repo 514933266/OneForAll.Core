@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 
 namespace OneForAll.Core.Utility
 {
@@ -86,7 +87,7 @@ namespace OneForAll.Core.Utility
         /// <returns>起始时间</returns>
         public static DateTime ConvertToFirstDate(DateTime? date)
         {
-            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) : new DateTime(date.Value.Year, date.Value.Month, 1);
+            return date.HasValue ? ConvertToFirstDate(date.Value) : ConvertToFirstDate(DateTime.Now);
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace OneForAll.Core.Utility
         /// <returns>起始时间</returns>
         public static DateTime ConvertToLastDate(DateTime? date)
         {
-            return date == null ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) : new DateTime(date.Value.Year, date.Value.Month, DateTime.DaysInMonth(date.Value.Year, date.Value.Month));
+            return date.HasValue ? ConvertToLastDate(date.Value) : ConvertToLastDate(DateTime.Now);
         }
 
         /// <summary>
@@ -117,6 +118,26 @@ namespace OneForAll.Core.Utility
         public static DateTime ConvertToLastDate(DateTime date)
         {
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+        }
+
+        /// <summary>
+        /// 转换日期为当天开始时间（23:59）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToDayEnd(DateTime date)
+        {
+            return date.Date.AddDays(1).AddSeconds(-1);
+        }
+
+        /// <summary>
+        /// 转换日期为当天开始时间（23:59）
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <returns>起始时间</returns>
+        public static DateTime ConvertToDayEnd(DateTime? date)
+        {
+            return date.HasValue ? date.Value.Date.AddDays(1).AddSeconds(-1) : ConvertToDayEnd(DateTime.Now);
         }
         #endregion
     }

@@ -1,9 +1,13 @@
-﻿using System;
+﻿using OneForAll.Core.Extension;
+using Org.BouncyCastle.Utilities.Encoders;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OneForAll.Core.Utility
 {
@@ -22,7 +26,7 @@ namespace OneForAll.Core.Utility
         public static string GetRandomNumber(int length)
         {
             string value = string.Empty;
-            int seed = Math.Abs((int) BitConverter.ToUInt32(Guid.NewGuid().ToByteArray(), 0));
+            int seed = Math.Abs((int)BitConverter.ToUInt32(Guid.NewGuid().ToByteArray(), 0));
             Random random = new Random(seed);
             for (int i = 0; i < length; i++)
             {
@@ -273,6 +277,72 @@ namespace OneForAll.Core.Utility
         {
             Regex rege = new Regex(value, RegexOptions.Compiled);
             return rege.Matches(key).Count;
+        }
+
+        /// <summary>
+        /// 获取身份证出生日期
+        /// </summary>
+        /// <param name="idCard">15或18位身份证</param>
+        /// <returns></returns>
+        public static DateTime GetBirthdayByIdCard(string idCard)
+        {
+            var birthday = DateTime.Now;
+            if (!string.IsNullOrEmpty(idCard) && idCard.Length >= 15)
+            {
+                var strYear = DateTime.Now.Year;
+                var strMonth = DateTime.Now.Month;
+                var strDay = DateTime.Now.Day;
+                if (idCard.Length == 15)
+                {
+                    strYear = idCard.Substring(6, 4).TryInt();
+                    strMonth = idCard.Substring(8, 2).TryInt();
+                    strDay = idCard.Substring(10, 2).TryInt();
+                }
+                if (idCard.Length == 18)
+                {
+                    strYear = idCard.Substring(6, 4).TryInt();
+                    strMonth = idCard.Substring(10, 2).TryInt();
+                    strDay = idCard.Substring(12, 2).TryInt();
+                }
+
+                if (strYear > 0 && strMonth > 0 && strDay > 0)
+                    birthday = new DateTime(strYear, strMonth, strDay);
+            }
+            return birthday;
+        }
+
+        /// <summary>
+        /// 获取身份证性别
+        /// </summary>
+        /// <param name="idCard">15或18位身份证</param>
+        /// <returns></returns>
+        public static bool GetSexByIdCard(string idCard)
+        {
+            if (!string.IsNullOrEmpty(idCard) && idCard.Length >= 15)
+            {
+                var idSex = 0;
+                if (idCard.Length == 15)
+                {
+                    idSex = idCard.Substring(12, 3).TryInt();
+                }
+                else if (idCard.Length == 18)
+                {
+                    idSex = idCard.Substring(14, 3).TryInt();
+                }
+                return (idSex % 2) == 0 ? false : true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 获取身份证年龄
+        /// </summary>
+        /// <param name="idCard">15或18位身份证</param>
+        /// <returns></returns>
+        public static int GetAgeByIdCard(string idCard)
+        {
+            var birthday = GetBirthdayByIdCard(idCard);
+            return DateTime.Now.Year - birthday.Year;
         }
         #endregion
     }

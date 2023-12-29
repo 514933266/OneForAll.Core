@@ -33,6 +33,11 @@ namespace OneForAll.Core
         /// </summary>
         public int TotalPage { get; set; }
 
+        public PageList()
+        {
+
+        }
+
         public PageList(int total, int pageIndex, int pageSize, IEnumerable<T> items)
         {
             Items = items;

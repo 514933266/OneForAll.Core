@@ -16,15 +16,21 @@ namespace OneForAll.Core.Test.Extension
         [TestMethod()]
         public void HasAttributeTest()
         {
+            //var exists = CatEnum.Name.HasAttribute<System.ComponentModel.DescriptionAttribute>();
+        }
+
+        [TestMethod()]
+        public void GetAttribute()
+        {
             var cat = new Cat();
-            var exists = cat.Name.HasAttribute<DisplayNameAttribute>();
+            var descr = ObjectHelper.GetAttribute<System.ComponentModel.DescriptionAttribute>(cat, "Name1");
         }
 
         [TestMethod()]
         public void GetAttributeValue()
         {
             var cat = new Cat();
-            var descr = cat.Name.GetAttribute<System.ComponentModel.DescriptionAttribute>("Description");
+            var descr = ObjectHelper.GetAttributeValue<System.ComponentModel.DescriptionAttribute>(cat, "Name", "Description");
         }
     }
 
@@ -37,8 +43,9 @@ namespace OneForAll.Core.Test.Extension
 
     public enum CatEnum
     {
-        [System.ComponentModel.Description("布偶猫")]
+        [System.ComponentModel.Description("名字")]
         Name,
+        [System.ComponentModel.Description("脚")]
         Foot
     }
 }

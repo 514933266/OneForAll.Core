@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneForAll.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -270,38 +271,5 @@ namespace OneForAll.Core.Extension
 
         #endregion
 
-        #region 特性
-
-        /// <summary>
-        /// 获取指定特性
-        /// </summary>
-        /// <returns>Description</returns>
-        public static bool HasAttribute<T>(this object obj) where T : Attribute
-        {
-            var attr = obj.GetType().GetCustomAttribute<T>();
-            return attr == null ? false : true;
-        }
-
-        /// <summary>
-        /// 获取指定特性
-        /// </summary>
-        /// <returns>Description</returns>
-        public static string GetAttribute<T>(this object obj, string name) where T : Attribute
-        {
-            var field = obj.GetType().GetField(name);
-            var attrs = System.Attribute.GetCustomAttributes(field, typeof(T));
-            var props = typeof(T).GetProperties();
-            foreach (var attr in attrs)
-            {
-                var prop = props.FirstOrDefault(w => w.Name == name);
-                if (prop != null)
-                {
-                    return prop.GetValue(attr).ToString();
-                }
-            }
-            return "";
-        }
-
-        #endregion
     }
 }
