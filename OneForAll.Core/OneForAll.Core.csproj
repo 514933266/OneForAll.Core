@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>OneForAll核心类库：主要为通用接口、对象、帮助类（编码、字符串处理、常用正则、扩展方法、加密解密）</Description>
     <Authors>xhp</Authors>
     <Copyright>xhp</Copyright>
@@ -11,7 +11,7 @@
     <FileVersion>1.1.0.0</FileVersion>
     <RepositoryUrl>https://github.com/514933266/OneForAll.Core.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.2.0.6</Version>
+    <Version>2.0.0.0-net8</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
