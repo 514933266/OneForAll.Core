@@ -19,6 +19,7 @@ namespace OneForAll.Core.Utility
         {
             return ToTimeStamp(DateTime.Now);
         }
+
         /// <summary>
         /// 转换指定时间为时间戳
         /// </summary>
@@ -28,18 +29,33 @@ namespace OneForAll.Core.Utility
         {
             return new DateTimeOffset(datetime).ToUnixTimeSeconds();
         }
+
+        /// <summary>
+        /// 转换当前时间的时间戳（13位）
+        /// </summary>
+        /// <returns>时间戳</returns>
+        public static long ToLongTimeStamp(DateTime datetime)
+        {
+            return new DateTimeOffset(datetime).ToUnixTimeMilliseconds();
+        }
+
         /// <summary>
         /// 时间戳转为C#格式时间
         /// </summary>
         /// <param name="unix">时间戳</param>
         /// <returns>时间</returns>
-        public static DateTime ToDateTime(long unix)
+        public static DateTime ToDateTime(long unix, bool isLong = false)
         {
-            return DateTimeOffset.FromUnixTimeSeconds(unix).ToLocalTime().DateTime;
+            if (isLong)
+                return DateTimeOffset.FromUnixTimeMilliseconds(unix).ToLocalTime().DateTime;
+            else
+                return DateTimeOffset.FromUnixTimeSeconds(unix).ToLocalTime().DateTime;
         }
+
         #endregion
 
         #region 中文格式时间
+
         /// <summary>
         /// 获取中文格式时间：yyyy年MM月dd日 星期x
         /// </summary>
@@ -139,6 +155,7 @@ namespace OneForAll.Core.Utility
         {
             return date.HasValue ? date.Value.Date.AddDays(1).AddSeconds(-1) : ConvertToDayEnd(DateTime.Now);
         }
+
         #endregion
     }
 }
