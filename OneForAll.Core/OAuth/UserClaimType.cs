@@ -7,58 +7,68 @@ using System.Threading.Tasks;
 namespace OneForAll.Core.OAuth
 {
     /// <summary>
-    /// 授权用户身份信息
+    /// 用户声明（Claim）类型常量。
     /// </summary>
-    public class UserClaimType
+    public static class UserClaimType
     {
         /// <summary>
-        /// 租户id
+        /// 租户ID
         /// </summary>
-        public const string TENANT_ID = "TenantId";
+        public const string TenantId = "tenant_id";
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public const string USERNAME = "UserName";
+        public const string UserName = "user_name";
 
         /// <summary>
-        /// 名称
+        /// 用户昵称
         /// </summary>
-        public const string USER_NICKNAME = "UserNickName";
+        public const string DisplayName = "display_name";
 
         /// <summary>
-        /// id
+        /// 用户ID
         /// </summary>
-        public const string USER_ID = "UserId";
+        public const string UserId = "user_id";
 
         /// <summary>
-        /// 角色
+        /// 人员ID
         /// </summary>
-        public const string ROLE = "Role";
+        public const string PersonId = "person_id";
 
         /// <summary>
-        /// 人员档案id
+        /// 是否为默认
         /// </summary>
-        public const string PERSON_ID = "PersonId";
+        public const string IsDefault = "is_default";
 
         /// <summary>
-        /// 是否默认用户
+        /// 微信小程序AppId
         /// </summary>
-        public const string IS_DEFAULT = "IsDefault";
+        public const string WxAppId = "wx_appid";
 
         /// <summary>
-        /// 微信Appid
+        /// 微信OpenId
         /// </summary>
-        public const string WX_APPID = "WxAppId";
+        public const string WxOpenId = "wx_openid";
 
         /// <summary>
-        /// 微信Openid
+        /// 微信UnionId
         /// </summary>
-        public const string WX_OPENID = "WxOpenId";
+        public const string WxUnionId = "wx_unionid";
 
         /// <summary>
-        /// 微信unionId
+        /// 用户邮箱
         /// </summary>
-        public const string WX_UNIONID = "WxUnionId";
+        public const string Email = "email";
+
+        /// <summary>
+        /// 用户手机号
+        /// </summary>
+        public const string PhoneNumber = "phone_number";
+
+        /// <summary>
+        /// 用户角色
+        /// </summary>
+        public const string Role = "role";
     }
 }

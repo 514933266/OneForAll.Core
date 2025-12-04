@@ -7,11 +7,11 @@
     <Copyright>xhp</Copyright>
     <PackageProjectUrl>https://github.com/514933266/OneForAll.Core</PackageProjectUrl>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <AssemblyVersion>1.0.99</AssemblyVersion>
-    <FileVersion>1.0.99</FileVersion>
+    <AssemblyVersion>1.1.99</AssemblyVersion>
+    <FileVersion>1.1.99</FileVersion>
     <RepositoryUrl>https://github.com/514933266/OneForAll.Core.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.99</Version>
+    <Version>1.1.99</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
