@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace OneForAll.Core.DDD
+namespace OneForAll.Core.ORM.Models
 {
     /// <summary>
     /// 约束：聚合根
     /// </summary>
     /// <typeparam name="TType">主键类型</typeparam>
-    public class Entity<TType> : IEntity<TType>
+    public interface IAggregateRoot<TType> : IEntity<TType>
     {
-        [Key]
-        [Required]
-        public virtual TType Id { get; set; }
     }
 }
