@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneForAll.Core
+namespace OneForAll.Core.ORM.Models
 {
     /// <summary>
-    /// 约束：创建时间
+    /// 约束：假删除
     /// </summary>
-    public interface ICreateTime
+    public interface IDeleted
     {
         /// <summary>
-        /// 创建时间
+        /// 是否已删除
         /// </summary>
-        DateTime CreateTime { get; set; }
+        bool IsDeleted { get; set; }
     }
 }

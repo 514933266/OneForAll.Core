@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OneForAll.Core.Extension;
+using OneForAll.Core.ORM.Models;
 using OneForAll.Core.Utility;
 using System;
 using System.Collections.Generic;

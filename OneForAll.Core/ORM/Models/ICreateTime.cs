@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneForAll.Core
+namespace OneForAll.Core.ORM.Models
 {
     /// <summary>
-    /// 接口：操作人
+    /// 约束：创建时间
     /// </summary>
-    public interface IOperator<TType> : IEntity<TType>
+    public interface ICreateTime
     {
         /// <summary>
-        /// 名称
+        /// 创建时间
         /// </summary>
-        public string Name { get; set; }
+        DateTime CreateTime { get; set; }
     }
 }

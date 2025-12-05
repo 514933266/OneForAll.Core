@@ -1,4 +1,5 @@
 ﻿using OneForAll.Core.Extension;
+using OneForAll.Core.ORM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

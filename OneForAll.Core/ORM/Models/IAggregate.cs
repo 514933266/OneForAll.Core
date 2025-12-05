@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneForAll.Core.DDD
+namespace OneForAll.Core.ORM.Models
 {
     /// <summary>
     /// 约束：聚合

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OneForAll.Core.DDD
+namespace OneForAll.Core.ORM.Models
 {
     public class AggregateRoot<TType> : Entity<TType>, IAggregateRoot<TType>
     {

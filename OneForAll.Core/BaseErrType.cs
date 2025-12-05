@@ -11,11 +11,61 @@ namespace OneForAll.Core
     /// </summary>
     public enum BaseErrType
     {
+        #region 系统级别错误
+
+        /// <summary>
+        /// 第三方服务不可用
+        /// </summary>
+        ThirdPartyServiceUnavailable = -30002,
+
+        /// <summary>
+        /// 网络超时
+        /// </summary>
+        NetworkTimeout = -30001,
 
         /// <summary>
         /// 服务器错误
         /// </summary>
         ServerError = -30000,
+
+        #endregion
+
+        #region 客户端/业务逻辑错误
+
+        /// <summary>
+        /// 业务规则不满足
+        /// </summary>
+        BusinessRuleViolation = -20016,
+
+        /// <summary>
+        /// 不支持的文件类型
+        /// </summary>
+        UnsupportedFileType = -20015,
+
+        /// <summary>
+        /// 文件过大
+        /// </summary>
+        FileTooLarge = -20014,
+
+        /// <summary>
+        /// 请求过于频繁（触发限流）
+        /// </summary>
+        TooManyRequests = -20013,
+
+        /// <summary>
+        /// 状态冲突（如：操作与当前状态不符）
+        /// </summary>
+        StateConflict = -20012,
+
+        /// <summary>
+        /// 请求参数无效
+        /// </summary>
+        InvalidParameter = -20011,
+
+        /// <summary>
+        /// 客户端无效
+        /// </summary>
+        ClientInvalid = -20010,
 
         /// <summary>
         /// 等级过低
@@ -67,6 +117,15 @@ namespace OneForAll.Core
         /// </summary>
         TimestampInvalid = -20000,
 
+        #endregion
+
+        #region 数据层错误
+
+        /// <summary>
+        /// 资源不存在
+        /// </summary>
+        ResourceNotFound = -10005,
+
         /// <summary>
         /// 数据为空
         /// </summary>
@@ -91,6 +150,13 @@ namespace OneForAll.Core
         /// 数据异常
         /// </summary>
         DataError = -10000,
+
+        #endregion
+
+        /// <summary>
+        /// 未知失败
+        /// </summary>
+        UnknownFailure = -1,
 
         /// <summary>
         /// 失败
